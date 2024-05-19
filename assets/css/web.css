@@ -21,9 +21,44 @@ main {
     align-items: center;
 }
 
+.map-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
 #map {
-    width: 100%;
+    width: 600px;
     height: 500px;
+    margin-right: 20px;
+}
+
+.coordinates {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.coordinates label {
+    margin: 5px 0;
+}
+
+.coordinates input {
+    margin-bottom: 10px;
+    width: 200px;
+    padding: 5px;
+}
+
+.coordinates button {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.coordinates button:hover {
+    background-color: #45a049;
 }
 
 footer {

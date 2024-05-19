@@ -15,16 +15,33 @@ function initMap() {
         draggable: true,
     });
 
+    // Set initial values for latitude and longitude inputs
+    document.getElementById('latitude').value = centerCoords.lat;
+    document.getElementById('longitude').value = centerCoords.lng;
+
     const infoWindow = new google.maps.InfoWindow();
 
     marker.addListener('dragend', function(event) {
         const newPosition = event.latLng;
+        document.getElementById('latitude').value = newPosition.lat();
+        document.getElementById('longitude').value = newPosition.lng();
         infoWindow.setContent(`Koordinat: ${newPosition.lat()}, ${newPosition.lng()}`);
         infoWindow.open(map, marker);
     });
 
     marker.addListener('click', function() {
         infoWindow.setContent("Ini adalah Marker");
+        infoWindow.open(map, marker);
+    });
+
+    document.getElementById('searchButton').addEventListener('click', function() {
+        const lat = parseFloat(document.getElementById('latitude').value);
+        const lng = parseFloat(document.getElementById('longitude').value);
+        const newCoords = { lat: lat, lng: lng };
+
+        marker.setPosition(newCoords);
+        map.setCenter(newCoords);
+        infoWindow.setContent(`Koordinat: ${lat}, ${lng}`);
         infoWindow.open(map, marker);
     });
 }
